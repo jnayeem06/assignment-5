@@ -20,7 +20,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
 
 <style>
-body{
+.body {
 font-family: "Geist", sans-serif;
 }
 </style>
@@ -134,8 +134,9 @@ GitHub Issues Tracker
 
 </div>
 
+ 
 
-<!-- ================= LOADER ================= -->
+ <!-- ================= LOADER ================= -->
 
 <div id="loader" class="flex justify-center mt-10 hidden">
 <span class="loading loading-spinner loading-lg"></span>
@@ -143,78 +144,65 @@ GitHub Issues Tracker
 
 
 <!-- ================= ISSUE GRID ================= -->
+ <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4" id="issues-container">
 
-<section class="max-w-7xl mx-auto mt-8 px-4">
+  <!-- CARD -->
+  <div id="card-1" class="bg-white rounded-xl shadow-sm border-t-4 border-green-500 p-4 space-y-3 hover:shadow-md transition">
 
-<div id="issue-container"
-class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- top -->
+    <div class="flex justify-between items-center">
 
+      <!-- IMAGE -->
+      <div class="flex items-center gap-2">
+        <img id="issue-image"
+             src="./Open-Status.png"
+             class="w-6 h-6 rounded-full object-cover">
+      </div>
 
-<!-- SAMPLE CARD -->
+      <span id="priority"
+        class="text-xs font-semibold px-3 py-1 rounded-full bg-red-100 text-red-500">
+        HIGH
+      </span>
 
-<div class="card bg-white shadow border-t-4 border-green-500 cursor-pointer space-y-3">
+    </div>
 
-<div class="card-body p-4">
+    <!-- title -->
+    <h3 id="title" class="font-semibold text-gray-800 leading-snug">
+      Fix Navigation Menu On Mobile Devices
+    </h3>
 
-<div class="flex justify-between items-center">
+    <!-- description -->
+    <p id="description" class="text-sm text-gray-500">
+      The navigation menu doesn't collapse properly on mobile devices.
+    </p>
 
-<span class="badge badge-success text-xs">
+    <!-- labels -->
+    <div class="flex gap-2">
+      <span id="bug"
+        class="text-xs px-2 py-1 rounded-full border border-red-200 text-red-500 bg-red-50">
+        BUG
+      </span>
 
-    <img src="./Open-Status.png" class="w-4 h-4 object-cover">
-</span>
+      <span id="help"
+        class="text-xs px-2 py-1 rounded-full border border-yellow-200 text-yellow-600 bg-yellow-50">
+        HELP WANTED
+      </span>
+    </div>
+ <!--footer-->
+    <div class="flex justify-between text-xs text-gray-400 pt-2 border-t">
+      <span id="author">#1 by john_doe</span>
+      <span id="date">1/15/2024</span>
+    </div>
 
-<span class="text-[#EF4444] p-3 shadow-md bg-[#FEECEC] rounded-md">
-HIGH
-</span>
-
-</div>
-
-<h2 class="font-semibold text-sm mt-2">
-Fix Navigation Menu On Mobile Devices
-</h2>
-
-<p class="text-xs text-[#64748B]">
-The navigation menu doesn't collapse properly on mobile devices.
-</p>
-
-<div class="flex gap-2 mt-3">
-
-<span class="badge badge-error badge-outline text-xs">
-    <i class="fa-solid fa-bug"></i>
-BUG
-</span>
-
-<span class="badge badge-warning badge-outline text-xs">
-    <i class="fa-regular fa-life-ring"></i>
-HELP WANTED
-</span>
-
-</div>
-
-<div class="text-xs text-gray-400 mt-3">
-
-<span class="text-[#64748B]">
-#1 by john_doe
-</span>
-
-<br>
-
-<span class="text-[#64748B]">
-1/15/2024
-</span>
+  </div>
 
 </div>
 
-</div>
+ 
 
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= MODAL ================= -->
+   
+  
+<!-- ================= MODAL =================!-->
 
 <dialog id="issue-modal" class="modal">
 
@@ -243,6 +231,8 @@ Close
 </div>
 
 </dialog>
+
+<script src="./main.js"></script>
 
 </body>
 </html>
