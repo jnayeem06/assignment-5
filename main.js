@@ -13,7 +13,7 @@ const searchInput = document.getElementById("search-input");
 const issueModal = document.getElementById("issue-modal");
 const modalClose = document.getElementById("modal-close");
 
-// modal fields
+// modal  
 const modalTitle = document.getElementById("modal-title");
 const modalDescription = document.getElementById("modal-description");
 const modalStatus = document.getElementById("modal-status");
@@ -73,7 +73,7 @@ function showIssues(list) {
     `;
   }).join("");
 
-  // ====== ADD CLICK FOR MODAL ======
+  // ======   CLICK FOR MODAL ======
   document.querySelectorAll("#issues-container > div").forEach(card => {
     card.addEventListener("click", () => {
       const id = card.getAttribute("data-id");
@@ -95,7 +95,7 @@ function showIssues(list) {
           modalLabels.innerHTML += `<span class="px-2 py-1 text-xs font-medium rounded-full border ${colorClass}">${label}</span>`;
         });
 
-        // Priority color dynamic
+        
         modalPriority.className = "font-medium";
         if(issue.priority === "HIGH") modalPriority.classList.add("text-red-600");
         else if(issue.priority === "MEDIUM") modalPriority.classList.add("text-yellow-600");
@@ -135,5 +135,5 @@ searchInput.addEventListener("input", async () => {
 modalClose.addEventListener("click", () => { issueModal.close(); });
 issueModal.addEventListener("click", e => { if(e.target === issueModal) issueModal.close(); });
 
-// ====== INIT ======
+ 
 fetchIssues();
