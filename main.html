@@ -67,8 +67,8 @@ GitHub Issues Tracker
 
   <!-- New Issue Button -->
   <button id="new-issue-btn" class="btn btn-primary rounded-md flex items-center gap-2">
-   <i class="fa-brands fa-sistrix"></i>
-   Search
+    <i class="fa-solid fa-plus"></i>
+    New issue
   </button>
 
 </div>
@@ -204,32 +204,59 @@ GitHub Issues Tracker
    
   
 <!-- ================= MODAL =================!-->
+ <dialog id="issue-modal" class="modal">
 
-<dialog id="issue-modal" class="modal">
+  <div class="modal-box w-full max-w-xl rounded-2xl bg-white p-6 shadow-2xl">
 
-<div class="modal-box">
+    <!-- Title -->
+    <h3 id="modal-title" class="text-xl font-semibold text-gray-800"></h3>
 
-<h3 id="modal-title" class="font-bold text-lg"></h3>
+    <!-- Labels -->
+    <div id="modal-labels" class="flex gap-2 mt-2"></div>
 
-<p id="modal-description" class="py-3"></p>
+    <!-- Description -->
+    <p id="modal-description" class="mt-4 text-gray-600 leading-relaxed"></p>
 
-<div class="space-y-1 text-sm">
+    <!-- Divider -->
+    <div class="border-t my-4"></div>
 
-<p><strong>Status:</strong> <span id="modal-status"></span></p>
-<p><strong>Priority:</strong> <span id="modal-priority"></span></p>
-<p><strong>Author:</strong> <span id="modal-author"></span></p>
-<p><strong>Label:</strong> <span id="modal-label"></span></p>
-<p><strong>Created:</strong> <span id="modal-date"></span></p>
+    <!-- Info Grid -->
+    <div class="grid grid-cols-2 gap-4 text-sm">
 
-</div>
+      <div class="bg-gray-50 p-3 rounded-lg">
+        <p class="text-gray-500">Status</p>
+        <span id="modal-status" class="text-green-600 font-medium"></span>
+      </div>
 
-<div class="modal-action">
-<button id="modal-close" class="btn">
-Close
-</button>
-</div>
+      <div class="bg-gray-50 p-3 rounded-lg">
+        <p class="text-gray-500">Priority</p>
+        <span id="modal-priority" class="font-medium"></span>
+      </div>
 
-</div>
+      <div class="bg-gray-50 p-3 rounded-lg">
+        <p class="text-gray-500">Author</p>
+        <span id="modal-author" class="font-medium text-gray-700"></span>
+      </div>
+
+      <div class="bg-gray-50 p-3 rounded-lg">
+        <p class="text-gray-500">Created</p>
+        <span id="modal-date" class="text-gray-700"></span>
+      </div>
+
+    </div>
+
+    <!-- Close Button -->
+    <div class="modal-action mt-6 flex justify-end">
+
+      <button
+        id="modal-close"
+        class="px-5 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-medium hover:opacity-90 transition">
+        Close
+      </button>
+
+    </div>
+
+  </div>
 
 </dialog>
 

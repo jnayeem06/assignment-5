@@ -19,7 +19,7 @@ const modalDescription = document.getElementById("modal-description");
 const modalStatus = document.getElementById("modal-status");
 const modalPriority = document.getElementById("modal-priority");
 const modalAuthor = document.getElementById("modal-author");
-const modalLabel = document.getElementById("modal-label");
+const modalLabels = document.getElementById("modal-labels");
 const modalDate = document.getElementById("modal-date");
 
 let allIssues = [];
@@ -49,7 +49,12 @@ function showIssues(list) {
   issuesContainer.innerHTML = list.map(issue => {
     const color = issue.status === "open" ? "border-green-500" : "border-purple-500";
     const icon = issue.status === "open" ? "./Open-Status.png" : "./Closed-Status.png";
-    const labels = (issue.labels || []).map(l => `<span class="text-xs px-2 py-1 rounded-full border">${l}</span>`).join("");
+    const labels = (issue.labels || []).map(l => {
+      const badgeColor = l.toLowerCase() === "bug"
+        ? "bg-red-100 text-red-600 border-red-200"
+        : "bg-yellow-100 text-yellow-700 border-yellow-200";
+      return `<span class="text-xs px-2 py-1 rounded-full border ${badgeColor}">${l}</span>`;
+    }).join("");
     
     return `
       <div class="bg-white rounded-xl shadow-sm border-t-4 p-4 space-y-3 hover:shadow-md transition ${color}" data-id="${issue.id}">
@@ -79,8 +84,23 @@ function showIssues(list) {
         modalStatus.textContent = issue.status;
         modalPriority.textContent = issue.priority;
         modalAuthor.textContent = issue.author;
-        modalLabel.textContent = issue.labels?.join(", ") || "None";
         modalDate.textContent = issue.created_at;
+
+        // Labels
+        modalLabels.innerHTML = "";
+        (issue.labels || []).forEach(label => {
+          const colorClass = label.toLowerCase() === "bug"
+            ? "bg-red-100 text-red-600 border-red-200"
+            : "bg-yellow-100 text-yellow-700 border-yellow-200";
+          modalLabels.innerHTML += `<span class="px-2 py-1 text-xs font-medium rounded-full border ${colorClass}">${label}</span>`;
+        });
+
+        // Priority color dynamic
+        modalPriority.className = "font-medium";
+        if(issue.priority === "HIGH") modalPriority.classList.add("text-red-600");
+        else if(issue.priority === "MEDIUM") modalPriority.classList.add("text-yellow-600");
+        else modalPriority.classList.add("text-blue-600");
+
         issueModal.showModal();
       }
     });
@@ -91,9 +111,9 @@ function showIssues(list) {
 function setActive(btn) {
   [btnAll, btnOpen, btnClosed].forEach(b => {
     b.classList.remove("bg-[#5D00FF]", "text-white");
-    b.classList.add("text-gray-500", "bg-white");
+    b.classList.add("text-gray-500", "bg-purple");
   });
-  btn.classList.add("bg-[#5D00FF]", "text-white");
+  btn.classList.add("bg-[#5D00FF]", "text-purple");
 }
 
 // ====== FILTER ======
@@ -112,9 +132,8 @@ searchInput.addEventListener("input", async () => {
 });
 
 // ====== MODAL CLOSE ======
-modalClose.addEventListener("click", () => {
-  issueModal.close();
-});
+modalClose.addEventListener("click", () => { issueModal.close(); });
+issueModal.addEventListener("click", e => { if(e.target === issueModal) issueModal.close(); });
 
 // ====== INIT ======
 fetchIssues();
